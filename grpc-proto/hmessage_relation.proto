@@ -1,0 +1,381 @@
+syntax = "proto3";
+
+package relation_grpc;
+
+service Relation {
+  rpc getUserBaseInfo(UserBaseInfoRequest) returns (UserBaseInfoReply);
+  rpc getUserBlockedUsers(UserBlockedUsersRequest)
+      returns (UserBlockedUsersReply);
+  rpc getUserSpaceSettings(UserSpaceSettingsRequest)
+      returns (UserSpaceSettingsReply);
+  rpc modifyUserSpaceSetting(ModifyUserSpaceSettingRequest)
+      returns (ModifyUserSpaceSettingReply);
+
+  rpc getSpaceBaseInfo(SpaceBaseInfoRequest) returns (SpaceBaseInfoReply);
+  rpc modifySpaceBaseInfo(ModifySpaceBaseInfoRequest)
+      returns (ModifySpaceBaseInfoReply);
+  rpc addAnnouncement(AddAnnouncementRequest) returns (AddAnnouncementReply);
+  rpc createDomainSpace(CreateDomainSpaceRequest)
+      returns (CreateDomainSpaceReply);
+  rpc createCustomSpace(CreateCustomSpaceRequest)
+      returns (CreateCustomSpaceReply);
+  rpc addSpace(AddSpaceRequest) returns (AddSpaceReply);
+  rpc dissolveSpace(DissolveSpaceRequest) returns (DissolveSpaceReply);
+  rpc getSelfAndChildrenInfo(SelfAndChildrenInfoRequest)
+      returns (SelfAndChildrenInfoReply);
+  rpc getSpaceType(GetSpaceTypeRequest) returns (GetSpaceTypeReply);
+
+  rpc getSpaceMembers(SpaceMembersRequest) returns (SpaceMembersReply);
+  rpc getMultiSpaceMembers(MultiSpaceMembersRequest)
+      returns (MultiSpaceMembersReply);
+  rpc addSpaceMember(AddSpaceMemberRequest) returns (AddSpaceMemberReply);
+  rpc bootOutSpaceMember(BootOutSpaceMemberRequest)
+      returns (BootOutSpaceMemberReply);
+  rpc withdrawFromSpace(WithdrawFromSpaceRequest)
+      returns (WithdrawFromSpaceReply);
+  rpc setSpaceMemberAuth(SetSpaceMemberAuthRequest)
+      returns (SetSpaceMemberAuthReply);
+  rpc invite(InviteRequest) returns (InviteReply);
+  rpc getInvitationList(GetInvitationListRequest)
+      returns (GetInvitationListReply);
+  rpc review(ReviewRequest) returns (ReviewReply);
+  rpc verification(VerificationRequest) returns (VerificationReply);
+
+  rpc checkRole(CheckRoleRequest) returns (CheckRoleReply);
+  rpc delBoot(DelBootRequest) returns (DelBootReply);
+
+  rpc getDelMessages(DelMessagesRequest) returns (DelMessagesReply);
+  rpc addDelMessages(AddDelMessagesRequest) returns (AddDelMessagesReply);
+
+  rpc getExtendInfo(ExtendInfoRequest) returns (ExtendInfoReply);
+  rpc modifyExtendInfo(ModifyExtendInfoRequest) returns (ModifyExtendInfoReply);
+
+  rpc getChatList(GetChatListRequest) returns (GetChatListReply);
+}
+
+message UserBaseInfoRequest {
+  repeated string usernames = 1;
+  string traceID = 2;
+}
+message UserBaseInfoReply {
+  map<string, string> userInfo = 1;
+  string traceID = 2;
+}
+
+message UserBlockedUsersRequest {
+  string username = 1;
+  string traceID = 2;
+}
+message UserBlockedUsersReply {
+  repeated string blockedUsers = 1;
+  string traceID = 2;
+}
+
+message UserSpaceSettingsRequest {
+  string username = 1;
+  string traceID = 2;
+}
+message UserSpaceSettingsReply {
+  map<string, string> spaceSettings = 1;
+  string traceID = 2;
+}
+
+message ModifyUserSpaceSettingRequest {
+  string username = 1;
+  string spaceCode = 2;
+  string spaceNickname = 3;
+  int32 isSpaceNicknameOn = 4;
+  string spaceRemark = 5;
+  string backgroundImgUrl = 6;
+  int32 shield = 7;
+  int32 topStatus = 8;
+  string traceID = 9;
+}
+message ModifyUserSpaceSettingReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message SpaceBaseInfoRequest {
+  repeated string spaceCodes = 1;
+  string traceID = 2;
+}
+message SpaceBaseInfoReply {
+  map<string, string> spaceInfo = 1;
+  string traceID = 2;
+}
+
+message ModifySpaceBaseInfoRequest {
+  string username = 1;
+  string spaceCode = 2;
+  string spaceName = 3;
+  string avatar = 4;
+  string traceID = 5;
+}
+message ModifySpaceBaseInfoReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message AddAnnouncementRequest {
+  string username = 1;
+  string spaceCode = 2;
+  string announcement = 3;
+  string traceID = 4;
+}
+message AddAnnouncementReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message CreateDomainSpaceRequest {
+  string creator = 1;
+  string spaceName = 2;
+  string avatar = 3;
+  string parentCode = 4;
+  string traceID = 5;
+}
+message CreateDomainSpaceReply {
+  bool ok = 1;
+  string spaceCode = 2;
+  string traceID = 3;
+}
+
+message CreateCustomSpaceRequest {
+  string creator = 1;
+  string spaceName = 2;
+  string avatar = 3;
+  string parentCode = 4;
+  int32 spaceType = 5;
+  string traceID = 6;
+}
+message CreateCustomSpaceReply {
+  bool ok = 1;
+  string spaceCode = 2;
+  string traceID = 3;
+}
+
+message AddSpaceRequest {
+  string spaceName = 1;
+  string avatar = 2;
+  string sex = 3;
+  string region = 4;
+  string birthday = 5;
+  string parentCode = 6;
+  int32 spaceType = 7;
+  string traceID = 8;
+}
+message AddSpaceReply {
+  bool ok = 1;
+  string spaceCode = 2;
+  string traceID = 3;
+}
+
+message DissolveSpaceRequest {
+  string username = 1;
+  string spaceCode = 2;
+  string traceID = 3;
+}
+message DissolveSpaceReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message SelfAndChildrenInfoRequest {
+  repeated string spaceCodes = 1;
+  string traceID = 3;
+}
+message SelfAndChildrenInfoReply {
+  map<string, string> info = 1;
+  string traceID = 2;
+}
+
+message GetSpaceTypeRequest {
+  repeated string spaceCodes = 1;
+  string traceID = 2;
+}
+message GetSpaceTypeReply {
+  map<string, string> info = 1;
+  string traceID = 2;
+}
+
+message SpaceMembersRequest {
+  string spaceCode = 1;
+  string traceID = 2;
+}
+message SpaceMembersReply {
+  map<string, string> spaceMembers = 1;
+  string traceID = 2;
+}
+
+message MultiSpaceMembersRequest {
+  repeated string spaceCodes = 1;
+  string traceID = 2;
+}
+message MultiSpaceMembersReply {
+  map<string, string> multiSpaceMembers = 1;
+  string traceID = 2;
+}
+
+message AddSpaceMemberRequest {
+  string spaceCode = 1;
+  string username = 2;
+  int32 role = 3;
+  string traceID = 4;
+}
+message AddSpaceMemberReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message BootOutSpaceMemberRequest {
+  string spaceCode = 1;
+  string username = 2;
+  string reviewer = 3;
+  string traceID = 4;
+}
+message BootOutSpaceMemberReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message WithdrawFromSpaceRequest {
+  string spaceCode = 1;
+  repeated string usernames = 2;
+  string traceID = 3;
+}
+message WithdrawFromSpaceReply {
+  int32 count = 1;
+  string newCreator = 2;
+  string traceID = 3;
+}
+
+message SetSpaceMemberAuthRequest {
+  string spaceCode = 1;
+  string username = 2;
+  string reviewer = 3;
+  int32 role = 4;
+  string traceID = 5;
+}
+message SetSpaceMemberAuthReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message InviteRequest {
+  string spaceCode = 1;
+  string invitee = 2;
+  string inviter = 3;
+  int32 role = 4;
+  string traceID = 5;
+}
+message InviteReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message GetInvitationListRequest {
+  repeated string spaceCodes = 1;
+  string traceID = 2;
+}
+message GetInvitationListReply {
+  string invitationsList = 1;
+  string traceID = 2;
+}
+
+message ReviewRequest {
+  string spaceCode = 1;
+  string invitee = 2;
+  string reviewer = 3;
+  int32 role = 4;
+  int32 status = 5;
+  string traceID = 6;
+}
+message ReviewReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message VerificationRequest {
+  string id = 1;
+  string invitee = 2;
+  string traceID = 3;
+}
+message VerificationReply {
+  bool ok = 1;
+  string invitationSpaceInfo = 2;
+  string traceID = 3;
+}
+
+message CheckRoleRequest {
+  string spaceCode = 1;
+  string operator = 2;
+  repeated int32 roleNeeded = 3;
+  string traceID = 4;
+}
+message CheckRoleReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message DelBootRequest {
+  string bootId = 1;
+  string traceID = 2;
+}
+message DelBootReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message DelMessagesRequest {
+  string username = 1;
+  string spaceCode = 2;
+  string traceID = 3;
+}
+message DelMessagesReply {
+  repeated string messageId = 1;
+  string traceID = 2;
+}
+
+message AddDelMessagesRequest {
+  string username = 1;
+  string spaceCode = 2;
+  repeated string delMessages = 3;
+  string traceID = 4;
+}
+message AddDelMessagesReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message ExtendInfoRequest {
+  repeated string spaceCodes = 1;
+  string traceID = 2;
+}
+message ExtendInfoReply {
+  map<string, string> extendInfo = 1;
+  string traceID = 2;
+}
+
+message ModifyExtendInfoRequest {
+  string username = 1;
+  string spaceCode = 2;
+  string sex = 3;
+  string birthday = 4;
+  string region = 5;
+  string traceID = 6;
+}
+message ModifyExtendInfoReply {
+  bool ok = 1;
+  string traceID = 2;
+}
+
+message GetChatListRequest {
+  repeated string spaceCodes = 1;
+  string username = 2;
+  string traceID = 3;
+}
+message GetChatListReply {
+  map<string, string> chatList = 1;
+  string traceID = 3;
+}

@@ -1,0 +1,78 @@
+syntax = "proto3";
+package global_id_grpc;
+option go_package = "./";
+
+service GlobalID{
+  rpc CreateID(CreateIDReq) returns (CreateIDReply);
+  rpc CreateShortID(CreateShortIDReq) returns (CreateShortIDReply);
+  rpc GetIDWithType(GetIDWithTypeReq) returns (GetIDWithTypeReply);
+  rpc GetNode(GetNodeReq) returns (GetNodeReply);
+  rpc GetTimestamp(GetTimestampReq) returns (GetTimestampReply);
+  rpc GetCluster(GetClusterReq) returns (GetClusterReply);
+}
+
+//createID request
+message CreateIDReq{
+  int64 num = 1;
+  string  traceID = 2;
+}
+
+//createID response
+message CreateIDReply{
+  int64 count = 1;
+  repeated int64 globalID = 2;
+  string  traceID = 3;
+}
+
+//createShortID request
+message CreateShortIDReq{
+  int64 num = 1;
+  string  traceID = 2;
+}
+//createShortID response
+message CreateShortIDReply{
+  int64 count = 1;
+  repeated string globalID = 2;
+  string  traceID = 3;
+}
+//getIDWithType request
+message GetIDWithTypeReq{
+  int64 id = 1;
+  string type = 2;
+  string  traceID = 3;
+}
+//getIDWithType request
+message GetIDWithTypeReply{
+  string id = 1;
+  string traceID = 2;
+}
+//getNode request
+message GetNodeReq{
+  int64 value = 1;
+  string  traceID = 2;
+}
+//getNode request
+message GetNodeReply{
+  int64 node = 1;
+  string  traceID = 2;
+}
+
+//getTimestamp request
+message GetTimestampReq{
+  int64 value = 1;
+  string  traceID = 2;
+}
+//getTimestamp response
+message GetTimestampReply{
+  int64 time = 1;
+  string  traceID = 2;
+}
+
+message GetClusterReq{
+  string traceID = 1;
+}
+
+message GetClusterReply{
+  repeated string clusters = 1;
+  string traceID = 2;
+}

@@ -1,0 +1,33 @@
+syntax = "proto3";
+package path_grpc;
+
+service Path {
+  rpc MParse(MParseRequest) returns (MParseReply);
+  rpc Rename(RenameRequest) returns (RenameReply);
+  rpc Delete(DeleteRequest) returns (DeleteReply);
+}
+
+message MParseRequest {
+  repeated string path_codes = 1;
+
+  int64 traceID = 2;
+}
+
+message MParseReply { map<string, string> paths = 1; }
+
+message RenameRequest {
+  string path_code = 1;
+  string name = 2;
+
+  int64 traceID = 3;
+}
+
+message RenameReply { bool ok = 1; }
+
+message DeleteRequest {
+  string path_code = 1;
+
+  int64 traceID = 2;
+}
+
+message DeleteReply { bool ok = 1; }

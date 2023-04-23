@@ -1,0 +1,22 @@
+syntax = "proto3";
+package core_grpc;
+
+service Core { 
+  rpc NewMessage(NewRequest) returns (NewReply);
+ }
+
+message NewRequest {
+  string path_code = 1;
+  string username = 2;
+  string receiver = 3;
+  string message_type = 4;
+  string content = 5;
+  string space_nickname = 6;
+  string space_name = 7;
+  repeated string recv_list = 8;
+
+  int64 traceID = 9;
+}
+
+message NewReply { bool ok = 1; int64 traceID = 2;}
+

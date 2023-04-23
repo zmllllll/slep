@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package group;
+
+service Group {
+  rpc getGroupUserInfoByUsername(GroupUserInfoByUsernameRequest)
+      returns (GroupUserInfoByUsernameReply);
+  rpc getGroupUserInfoByClusterCodes(GroupUserInfoByClusterCodesRequest)
+      returns (GroupUserInfoByClusterCodesReply);
+  rpc getGroupInfoByUsername(GroupInfoByUsernameRequest)
+      returns (GroupInfoByUsernameReply);
+  rpc getGroupInfoByClusterCodes(GroupInfoByClusterCodesRequest)
+      returns (GroupInfoByClusterCodesReply);
+}
+
+message GroupUserInfoByUsernameRequest { string username = 1; }
+
+message GroupUserInfoByUsernameReply { string rsp = 1; }
+
+message GroupUserInfoByClusterCodesRequest {
+  repeated string clusterCodeList = 1;
+}
+
+message GroupUserInfoByClusterCodesReply { string rsp = 1; }
+
+message GroupInfoByUsernameRequest { string username = 1; }
+
+message GroupInfoByUsernameReply { string rsp = 1; }
+
+message GroupInfoByClusterCodesRequest { repeated string clusterCodeList = 1; }
+
+message GroupInfoByClusterCodesReply { string rsp = 1; }

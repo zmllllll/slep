@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package user;
+
+service User {
+  rpc getMaskingUserMsg(MaskingUserMsgRequest) returns (MaskingUserMsgReply);
+  rpc getUserGroupListInfo(UserGroupListInfoRequest)
+      returns (UserGroupListInfoReply);
+  rpc getHchatUserInfo(HchatUserInfoRequest) returns (HchatUserInfoReply);
+  rpc getUserMsg(UserMsgRequest) returns (UserMsgReply);
+}
+
+message MaskingUserMsgRequest { string username = 1; }
+
+message MaskingUserMsgReply { string rsp = 1; }
+
+message UserGroupListInfoRequest {
+  string type = 1;
+  string username = 2;
+}
+
+message UserGroupListInfoReply { string rsp = 1; }
+
+message HchatUserInfoRequest { string username = 1; }
+
+message HchatUserInfoReply { string rsp = 1; }
+
+message UserMsgRequest { string username = 1; }
+
+message UserMsgReply { string rsp = 1; }

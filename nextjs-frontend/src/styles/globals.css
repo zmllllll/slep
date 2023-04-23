@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.toastui-editor-popup-body input[type='text'].tui-colorpicker-palette-hex {
+  height: 30px !important;
+  width: 100% !important;
+}
+.ProseMirror {
+  height: 100% !important;
+}
+.toastui-editor-toolbar {
+  width: 100%;
+}

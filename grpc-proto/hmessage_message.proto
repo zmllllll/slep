@@ -1,0 +1,104 @@
+syntax = "proto3";
+package message_grpc;
+
+service message {
+  rpc MGet(MGetRequest) returns (MGetReply);
+  rpc LatestMessages(LatestMessagesRequest) returns (LatestMessagesReply);
+  rpc NewMessage(NewRequest) returns (NewReply);
+  rpc RevokeMessage(RevokeRequest) returns (RevokeReply);
+  rpc ReadNum(ReadNumRequest) returns (ReadNumReply);
+  rpc Read(ReadRequest) returns (ReadReply);
+  rpc UnreadStatus(UnreadStatusRequest) returns (UnreadStatusReply);
+}
+
+message MGetRequest {
+  string path_code = 1;
+  string receiver = 2;
+  string start_message_id = 3;
+  uint32 len = 4;
+
+  int64 traceID = 5;
+}
+
+message MGetReply { repeated string messages = 1; }
+
+message LatestMessagesRequest {
+  string path_code = 1;
+  string receiver = 2;
+  uint32 len = 3;
+
+  int64 traceID = 4;
+}
+
+message LatestMessagesReply { repeated string messages = 1; }
+
+message NewRequest {
+  string sender = 1;
+  string receiver = 2;
+  string path_code = 3;
+  string message_type = 4;
+  string message_id = 5;
+  string content = 6;
+  string timestamp = 7;
+
+  int64 traceID = 8;
+}
+
+message NewReply { bool ok = 1; }
+
+message RevokeRequest {
+  string username = 1;
+  string path_code = 2;
+  string receiver = 3;
+  string message_id = 4;
+
+  int64 traceID = 5;
+}
+
+message RevokeReply { bool ok = 1; }
+
+message ReadNumRequest {
+  repeated string message_id = 1;
+  string username = 2;
+  string space_code = 3;
+  string receiver = 4;
+
+  int64 traceID = 5;
+}
+
+message ReadNumReply { map<string, uint32> num = 1; }
+
+message ReadRequest {
+  string username = 1;
+  string path_code = 2;
+  string receiver = 3;
+  string message_id = 4;
+
+  int64 traceID = 5;
+}
+
+message ReadReply { bool ok = 1; }
+
+message UnreadStatusRequest {
+  string username = 1;
+
+  message SpaceCodeAndReceiver {
+    string spaceCode = 1;
+    string receiver = 2;
+  }
+  repeated SpaceCodeAndReceiver list = 2;
+
+  int64 traceID = 3;
+}
+
+
+
+message UnreadStatusReply { 
+  message ReceiverAndUnreadNum {
+    string receiver = 1;
+    string unreadNum = 2;
+  }
+  map<string, ReceiverAndUnreadNum> status = 1; 
+}
+
+

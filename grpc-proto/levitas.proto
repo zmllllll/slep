@@ -1,0 +1,20 @@
+syntax = "proto3";
+package levitas;
+option go_package = "./";
+
+
+service Levitas{
+  rpc create(Req) returns (Res);
+  rpc get(Req) returns (Res);
+  rpc query(Req) returns (Res);
+  rpc set(Req) returns (Res);
+  rpc UpdateByQuery(Req) returns (Res);
+}
+
+message Req{
+  string request = 1;
+}
+
+message Res{
+  string  response = 1;
+}

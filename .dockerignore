@@ -1,0 +1,8 @@
+/target
+/.*
+/build.sh
+/Cargo.lock
+/Dockerfile
+/stream
+/rfcs
+/nextjs-frontend

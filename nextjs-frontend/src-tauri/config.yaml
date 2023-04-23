@@ -1,0 +1,11 @@
+---
+name: slep-client
+description: slep-client configuration file
+version: v0.0.1
+
+# url: k8s.1to2to3.cn:31000
+url: 127.0.0.1:8080
+db:
+  # pg_url: 'postgresql://1.15.14.20?dbname=slep&user=postgres&password=quake@123'
+  # pg_url: postgres://postgres:great1996@localhost:5432/slep
+  pg_url: postgres://postgres:123456@localhost:5432/slep
