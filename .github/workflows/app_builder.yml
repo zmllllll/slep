@@ -18,9 +18,9 @@ jobs:
         platform: [windows-latest]
     runs-on: ${{ matrix.platform }}
 
-    defaults:
-      run:
-        working-directory: ./nextjs-frontend
+    # defaults:
+    #   run:
+    #     working-directory: ./nextjs-frontend
 
     steps:
       - name: Checkout repository
@@ -30,7 +30,13 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 7.1.7
-          run_install: true
+          # run_install: true
+
+      - name: Install frontend dependencies
+        # If you don't have `beforeBuildCommand` configured you may want to build your frontend here too.
+        run: |
+          cd nextjs-frontend
+          pnpm install
 
       - name: Install Protoc
         uses: arduino/setup-protoc@v1
