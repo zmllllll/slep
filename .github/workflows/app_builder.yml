@@ -14,8 +14,8 @@ jobs:
       fail-fast: false
       matrix:
         # platform: [macos-latest, windows-latest]
-        # platform: [ubuntu-latest]
-        platform: [windows-latest]
+        platform: [ubuntu-latest]
+        # platform: [windows-latest]
     runs-on: ${{ matrix.platform }}
 
     # defaults:
@@ -77,3 +77,15 @@ jobs:
           releaseBody: 'See the assets to download and install this version.'
           releaseDraft: true
           prerelease: false
+
+      - name: Upload release assets
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-assets
+          path: dist
+
+      - name: Download release assets
+        uses: actions/download-artifact@v2
+        with:
+          name: release-assets
+          path: ./dist
