@@ -82,3 +82,4 @@ jobs:
         with:
           name: my-artifact
           path: path/to/artifact/ # or path/to/artifact
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
